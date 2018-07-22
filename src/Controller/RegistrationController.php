@@ -12,6 +12,7 @@ use App\Form\UserType;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -42,12 +43,21 @@ class RegistrationController extends Controller
             // ... do any other work - like sending them an email, etc
             // maybe set a "flash" success message for the user
 
-            return $this->redirectToRoute('replace_with_some_route');
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render(
             'registration/register.html.twig',
             array('form' => $form->createView())
         );
+    }
+
+
+    /**
+      * @Route("dashboard", name="dashboard")
+     */
+    public function profile()
+    {
+        return new Response("Welcome in your profile");
     }
 }

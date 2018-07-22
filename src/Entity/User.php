@@ -76,6 +76,15 @@ class User implements UserInterface, \Serializable
         return $this->username;
     }
 
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
+
+
     public function getSalt()
     {
         // you *may* need a real salt depending on your encoder
@@ -143,7 +152,7 @@ class User implements UserInterface, \Serializable
     public function getPlainPassword()
     {
         return $this->plainPassword;
-    }
+    }s
 
     /**
      * @param mixed $plainPassword
@@ -152,4 +161,15 @@ class User implements UserInterface, \Serializable
     {
         $this->plainPassword = $plainPassword;
     }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password): void
+    {
+        $this->password = $password;
+    }
+
+
+
 }
