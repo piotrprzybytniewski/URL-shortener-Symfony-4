@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="form">
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+    {{ form_row(form.originalUrl) }}
+    <button type="submit">Shorten!</button>
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

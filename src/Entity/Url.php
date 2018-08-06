@@ -3,7 +3,8 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Validator\Constraints as AcmeAssert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UrlRepository")
  */
@@ -18,11 +19,14 @@ class Url
 
     /**
      * @ORM\Column(type="string", length=500)
+     * @Assert\NotBlank()
+     * @AcmeAssert\ContainsUrl
      */
     private $originalUrl;
 
     /**
      * @ORM\Column(type="string", length=300)
+     *
      */
     private $shortenedUrl;
 

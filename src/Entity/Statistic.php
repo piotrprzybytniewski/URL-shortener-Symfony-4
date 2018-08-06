@@ -25,7 +25,7 @@ class Statistic
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $clicks;
+    private $clicks = 0;
 
     public function getId()
     {

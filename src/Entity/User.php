@@ -8,6 +8,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -63,10 +65,16 @@ class User implements UserInterface, \Serializable
      */
     private $roles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Url", mappedBy="userId")
+     */
+    private $urls;
+
     public function __construct()
     {
         $this->isActive = true;
         $this->roles = array('ROLE_USER');
+        $this->urls = new ArrayCollection();
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid('', true));
     }
@@ -152,7 +160,7 @@ class User implements UserInterface, \Serializable
     public function getPlainPassword()
     {
         return $this->plainPassword;
-    }s
+    }
 
     /**
      * @param mixed $plainPassword
@@ -168,6 +176,37 @@ class User implements UserInterface, \Serializable
     public function setPassword($password): void
     {
         $this->password = $password;
+    }
+
+    /**
+     * @return Collection|Url[]
+     */
+    public function getUrls(): Collection
+    {
+        return $this->urls;
+    }
+
+    public function addUrl(Url $url): self
+    {
+        if (!$this->urls->contains($url)) {
+            $this->urls[] = $url;
+            $url->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUrl(Url $url): self
+    {
+        if ($this->urls->contains($url)) {
+            $this->urls->removeElement($url);
+            // set the owning side to null (unless already changed)
+            if ($url->getUserId() === $this) {
+                $url->setUserId(null);
+            }
+        }
+
+        return $this;
     }
 
 

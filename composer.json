@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "sensio/framework-extra-bundle": "^5.2",
+        "symfony/asset": "^4.1",
         "symfony/console": "^4.1",
         "symfony/flex": "^1.0",
         "symfony/form": "^4.1",
@@ -20,6 +21,7 @@
     "require-dev": {
         "symfony/dotenv": "^4.1",
         "symfony/maker-bundle": "^1.5",
+        "symfony/profiler-pack": "^1.0",
         "symfony/web-server-bundle": "^4.1"
     },
     "config": {

@@ -1,0 +1,119 @@
+html, body {
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fff;
+    font-family: 'Open Sans', sans-serif;
+    display: grid;
+    grid-template-rows: 50px auto 50px;
+    color: #000;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+}
+
+/* LOGO */
+
+.logo {
+    display: inline-block;
+    margin-top: 13px;
+    margin-left: 10px;
+}
+
+/* MENU */
+
+ul {
+    list-style-type: none;
+    float: right;
+}
+
+
+ul li {
+    float: left;
+}
+
+nav {
+    grid-row: 1;
+    border-bottom: 1px solid grey;
+}
+
+li a {
+    display: block;
+    padding: 0 8px;
+    font-weight: bold;
+    color: #00A6ED;
+}
+
+li a.active {
+    color: #ee2d4d;
+
+}
+
+li a:hover:not(.active) {
+    color: #08415C;
+}
+
+/* REGISTER FORM */
+
+input, select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit], button[type=submit] {
+    width: 100%;
+    background-color: #00A6ED;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+input[type=submit]:hover, button[type=submit]:hover {
+    background: #08415C;
+    color: #FFB400;
+}
+
+
+.form {
+    width: 400px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.form-info {
+    background: #2B2D42;
+    color: #EF233C;
+    font-weight: bold;
+    padding: 4px;
+}
+
+
+/* MAIN */
+
+main {
+    grid-row: 2;
+}
+
+/* FOOTER */
+
+footer {
+    background: #0D2C54;
+    color: #fff;
+    grid-row: 3;
+    text-align: center;
+}

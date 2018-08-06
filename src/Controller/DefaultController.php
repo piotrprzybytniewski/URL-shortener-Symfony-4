@@ -9,17 +9,55 @@
 namespace App\Controller;
 
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
+use App\Entity\Statistic;
+use App\Entity\Url;
+use App\Form\UrlType;
+use App\Service\UrlGeneratorService;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController extends Controller
+class DefaultController extends AbstractController
 {
     /**
      * @Route("/", name="homepage")
      */
-    public function homepage()
+    public function homepage(Request $request, EntityManagerInterface $em, UrlGeneratorService $urlGenerator)
     {
-        return new Response('Nice website');
+        $url = new Url();
+        $form = $this->createForm(UrlType::class, $url);
+
+        $form->handleRequest($request);
+
+        $errors = $form->getErrors(true);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $originalUrl = $form->get('originalUrl')->getData();
+            $url->setOriginalUrl($originalUrl);
+
+            $shortenedUrl = $urlGenerator->getRandomUrl();
+            $url->setShortenedUrl($shortenedUrl);
+            $em->persist($url);
+            $em->flush();
+
+            $statistics = new Statistic();
+            $statistics->setUrlId($url);
+
+            $em->persist($statistics);
+            $em->flush();
+            return $this->redirectToRoute('public_url_statistics', array(
+                'url' => $url->getShortenedUrl(),
+            ));
+
+        }
+
+        return $this->render('index.html.twig', array(
+            'form' => $form->createView(),
+            'errors' => $errors,
+        ));
     }
+
+
+
 }
