@@ -6,9 +6,7 @@ namespace App\Controller\Statistics;
 
 use App\Repository\StatisticRepository;
 use App\Repository\UrlRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class StatisticsController extends AbstractController
@@ -18,16 +16,35 @@ class StatisticsController extends AbstractController
      */
     public function publicStatistics($url, StatisticRepository $statisticRepository, UrlRepository $urlRepository)
     {
+        $private = false;
 
         $link = $urlRepository->findOneBy([
             'shortenedUrl' => $url
         ]);
 
-        $id = $link->getId();
+        $user_id = $link->getUserId();
 
+        if ($user_id === null) {
+            $id = $link->getId();
+
+            $statistics = $statisticRepository->findOneBy([
+                'urlId' => $id,
+            ]);
+
+            $clicks = $statistics->getClicks();
+
+
+        } else {
+            $private = true;
+            return $this->render('statistic/public.html.twig', array(
+                'private' => $private,
+            ));
+        }
         return $this->render('statistic/public.html.twig', array(
             'url' => $url,
-            'id' => $id,
-            ));
+            'clicks' => $clicks,
+            'private' => $private,
+        ));
+
     }
 }

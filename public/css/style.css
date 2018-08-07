@@ -14,8 +14,13 @@ body {
 }
 
 a {
-    color: #000;
+    color: #ed0000;
     text-decoration: none;
+    font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #00A6ED;
 }
 
 /* LOGO */
@@ -71,7 +76,7 @@ input, select {
     box-sizing: border-box;
 }
 
-input[type=submit], button[type=submit] {
+input[type=submit], button {
     width: 100%;
     background-color: #00A6ED;
     color: white;
@@ -83,7 +88,7 @@ input[type=submit], button[type=submit] {
     font-size: 18px;
 }
 
-input[type=submit]:hover, button[type=submit]:hover {
+input[type=submit]:hover, button:hover {
     background: #08415C;
     color: #FFB400;
 }
@@ -107,6 +112,89 @@ input[type=submit]:hover, button[type=submit]:hover {
 
 main {
     grid-row: 2;
+}
+
+/* SINGLE URL STATISTICS */
+
+.url-statistics {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.url-statistics h2 {
+    display: inline-block;
+}
+
+.copyToClipboard {
+    margin-left: 10px;
+    width: auto;
+}
+
+/* TOOLTIP */
+
+/* TOOLTIP */
+
+[data-tooltip] {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+    position: absolute;
+    bottom: 110%;
+    left: 30%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: 160px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #000;
+    background-color: hsla(0, 0%, 20%, 0.9);
+    color: #fff;
+    content: attr(data-tooltip);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+    position: absolute;
+    bottom: 110%;
+    left: 30%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:before,
+[data-tooltip]:after {
+    visibility: visible;
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";*/
+    /*filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);*/
+    opacity: 1;
+    transition-delay:0.3s;
 }
 
 /* FOOTER */

@@ -1,6 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-TEST
-    {{ url }}
-    {{ id }}
+    <div class="url-statistics">
+        {% if private  %}
+        <h2>This address is not public, so you can't follow his statistics!</h2>
+        {% else %}
+        <h2>Statistics for URL: </h2>
+        <a href="{{ app.request.getSchemeAndHttpHost() }}/{{ url }}">{{ app.request.getSchemeAndHttpHost() }}/{{ url }}</a>
+        <button type="button" class="copyToClipboard">Copy link</button>
+        <h3>Clicks:</h3>
+        <p>{{ clicks }}</p>
+        {% endif %}
+    </div>
 {% endblock %}
