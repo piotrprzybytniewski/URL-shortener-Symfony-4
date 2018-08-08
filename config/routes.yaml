@@ -1,3 +1,10 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+user_registration:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+
+single_url_redirect:
+    path: /{shortenedUrl}
+    controller: App\Controller\Redirect\SingleUrlRedirectController::singleUrlRedirect

@@ -13,7 +13,7 @@
     <ul>
         {% if app.user %}
             <li><a href="#">My account</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="/logout">Logout</a></li>
         {% else %}
             <li><a href="{{ path('login') }}">Log in</a></li>
             <li><a href="{{ path('user_registration') }}">Register</a></li>
