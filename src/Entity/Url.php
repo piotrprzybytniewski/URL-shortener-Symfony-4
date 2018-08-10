@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Validator\Constraints as AcmeAssert;
@@ -44,6 +45,36 @@ class Url
      * @ORM\OneToOne(targetEntity="App\Entity\Statistic", mappedBy="urlId", cascade={"persist", "remove"})
      */
     private $statistic;
+
+    private $urls;
+
+
+
+
+    public function addUrl($link)
+    {
+        $url = new Url();
+        $url->setOriginalUrl($link);
+        $url->setShortenedUrl("TEST");
+    }
+
+    public function getUrls(): ArrayCollection
+    {
+        return $this->urls;
+    }
+
+    /**
+     * @param ArrayCollection $urls
+     */
+    public function setUrls(ArrayCollection $urls): void
+    {
+        $this->urls = $urls;
+    }
+
+    public function __construct()
+    {
+        $this->urls = new ArrayCollection();
+    }
 
     public function getId()
     {

@@ -130,7 +130,7 @@ main {
     width: auto;
 }
 
-/* TOOLTIP */
+
 
 /* TOOLTIP */
 
@@ -196,6 +196,47 @@ main {
     opacity: 1;
     transition-delay:0.3s;
 }
+
+
+/* MULTIPLE ADDRESSES */
+
+.sub-header {
+    margin: 3px;
+    color: firebrick;
+    font-weight: bold;
+}
+
+.multiple-addresses  {
+    width: 70%;
+    margin:0 auto;
+    text-align: center;
+}
+
+.multiple-addresses textarea {
+    width: 100%;
+    min-height: 120px;
+    resize: none;
+}
+
+.multiple-addresses button {
+    width: 30%;
+}
+
+.urls-list-form {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+.urls-list-form ul {
+    float: none;
+}
+
+.urls-list-form ul li {
+    width: 100%;
+}
+
 
 /* FOOTER */
 
