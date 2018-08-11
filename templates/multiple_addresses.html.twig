@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="urls-list-form">
+    {{ form_start(form) }}
+    {{ form_label(form.urls) }}
+    {{ form_errors(form.urls) }}
+    <ul>
+        {% for urlField in form.urls %}
+            <li>
+                {{ form_errors(urlField) }}
+                {{ form_widget(urlField) }}
+            </li>
+        {% endfor %}
+    </ul>
+    <button type="Submit">Submit</button>
+    {{ form_end(form) }}
+    </div>
+{% endblock %}

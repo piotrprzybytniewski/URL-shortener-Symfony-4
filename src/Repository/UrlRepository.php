@@ -19,32 +19,10 @@ class UrlRepository extends ServiceEntityRepository
         parent::__construct($registry, Url::class);
     }
 
-//    /**
-//     * @return Url[] Returns an array of Url objects
-//     */
-    /*
-    public function findByExampleField($value)
+    public function getMaxListId()
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('u.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('u');
+        $qb->select('MAX(u.ListId)');
+        return $qb->getQuery()->getSingleScalarResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Url
-    {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

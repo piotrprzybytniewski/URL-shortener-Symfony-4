@@ -46,29 +46,12 @@ class Url
      */
     private $statistic;
 
-    private $urls;
 
-
-
-
-    public function addUrl($link)
+    public function addUrl($link, $shortenedUrl)
     {
-        $url = new Url();
-        $url->setOriginalUrl($link);
-        $url->setShortenedUrl("TEST");
-    }
-
-    public function getUrls(): ArrayCollection
-    {
-        return $this->urls;
-    }
-
-    /**
-     * @param ArrayCollection $urls
-     */
-    public function setUrls(ArrayCollection $urls): void
-    {
-        $this->urls = $urls;
+        $this
+            ->setOriginalUrl($link)
+            ->setShortenedUrl($shortenedUrl);
     }
 
     public function __construct()
