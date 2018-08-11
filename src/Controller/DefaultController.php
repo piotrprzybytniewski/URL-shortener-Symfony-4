@@ -38,14 +38,11 @@ class DefaultController extends AbstractController
 
             $shortenedUrl = $urlGenerator->getRandomUrl();
             $url->setShortenedUrl($shortenedUrl);
+            $statistic = new Statistic();
+            $url->setStatistic($statistic);
             $em->persist($url);
             $em->flush();
 
-            $statistics = new Statistic();
-            $statistics->setUrlId($url);
-
-            $em->persist($statistics);
-            $em->flush();
             return $this->redirectToRoute('public_url_statistics', array(
                 'url' => $url->getShortenedUrl(),
             ));

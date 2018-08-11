@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+use App\Entity\ListOfUrls;
 use App\Entity\Url;
 use App\Repository\UrlRepository;
 use App\Service\UrlGeneratorService;
@@ -23,8 +24,7 @@ class UrlsListController extends AbstractController
     public function showListOfUrls(
         Request $request,
         EntityManagerInterface $em,
-        UrlGeneratorService $urlGeneratorService,
-        UrlRepository $urlRepository
+        UrlGeneratorService $urlGeneratorService
     ) {
         $formInput = trim($request->get('multiple_addresses'));
         $urls = preg_split("/[\s]+/", $formInput);
@@ -37,14 +37,19 @@ class UrlsListController extends AbstractController
             ->getForm();
 
         $form->handleRequest($request);
-        if ($request->isMethod(Request::METHOD_POST)) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $urls = $form->get('urls')->getData();
-            $maxListId = $urlRepository->getMaxListId();
+            $list = new ListOfUrls();
+            $listUrl = $urlGeneratorService->getRandomUrl();
+            $list->setListUrl($listUrl);
+            $em->persist($list);
+
+            $userId = $this->getUser();
 
             foreach ($urls as $link) {
                 $url = new Url();
                 $shortenedUrl = $urlGeneratorService->getRandomUrl();
-                $url->addUrl($link, $shortenedUrl);
+                    $url->addUrl($link, $shortenedUrl, $list, $userId);
                 $em->persist($url);
             }
             $em->flush();

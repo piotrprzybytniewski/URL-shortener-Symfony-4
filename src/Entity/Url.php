@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Validator\Constraints as AcmeAssert;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UrlRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="url")
  */
 class Url
 {
@@ -36,27 +37,25 @@ class Url
      */
     private $userId;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $ListId;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Statistic", mappedBy="urlId", cascade={"persist", "remove"})
      */
     private $statistic;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ListOfUrls", inversedBy="listOfUrls")
+     */
+    private $ListId;
 
-    public function addUrl($link, $shortenedUrl)
+
+    public function addUrl($link, $shortenedUrl, $listId, $userId)
     {
         $this
             ->setOriginalUrl($link)
-            ->setShortenedUrl($shortenedUrl);
-    }
-
-    public function __construct()
-    {
-        $this->urls = new ArrayCollection();
+            ->setShortenedUrl($shortenedUrl)
+            ->setListId($listId)
+            ->setUserId($userId);
     }
 
     public function getId()
@@ -100,18 +99,18 @@ class Url
         return $this;
     }
 
-    public function getListId(): ?int
-    {
-        return $this->ListId;
-    }
-
-    public function setListId(?int $ListId): self
-    {
-        $this->ListId = $ListId;
-
-        return $this;
-    }
-
+//    public function getListId(): ?int
+//    {
+//        return $this->ListId;
+//    }
+//
+//    public function setListId(?int $ListId): self
+//    {
+//        $this->ListId = $ListId;
+//
+//        return $this;
+//    }
+//
     public function getStatistic(): ?Statistic
     {
         return $this->statistic;
@@ -125,6 +124,18 @@ class Url
         if ($this !== $statistic->getUrlId()) {
             $statistic->setUrlId($this);
         }
+
+        return $this;
+    }
+
+    public function getListId(): ?ListOfUrls
+    {
+        return $this->ListId;
+    }
+
+    public function setListId(?ListOfUrls $ListId): self
+    {
+        $this->ListId = $ListId;
 
         return $this;
     }
