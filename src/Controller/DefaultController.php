@@ -34,12 +34,9 @@ class DefaultController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $originalUrl = $form->get('originalUrl')->getData();
-            $url->setOriginalUrl($originalUrl);
-            $url->setUserId($this->getUser());
             $shortenedUrl = $urlGenerator->getRandomUrl();
-            $url->setShortenedUrl($shortenedUrl);
             $statistic = new Statistic();
-            $url->setStatistic($statistic, null);
+            $url->addUrl($originalUrl, $shortenedUrl, null, $this->getUser(), $statistic);
             $em->persist($url);
             $em->flush();
 

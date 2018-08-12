@@ -55,7 +55,7 @@ class UrlsListController extends AbstractController
             }
             $em->flush();
 
-
+            return $this->redirectToRoute('public_list_of_urls_statistics', array('url' => $listUrl));
         }
         return $this->render('multiple_addresses.html.twig', [
             'form' => $form->createView(),
