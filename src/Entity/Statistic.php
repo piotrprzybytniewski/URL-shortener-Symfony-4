@@ -27,6 +27,11 @@ class Statistic
      */
     private $clicks = 0;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ListOfUrls", inversedBy="statistics")
+     */
+    private $list;
+
     public function getId()
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Statistic
     public function setClicks(?int $clicks): self
     {
         $this->clicks = $clicks;
+
+        return $this;
+    }
+
+    public function getList(): ?ListOfUrls
+    {
+        return $this->list;
+    }
+
+    public function setList(?ListOfUrls $list): self
+    {
+        $this->list = $list;
 
         return $this;
     }

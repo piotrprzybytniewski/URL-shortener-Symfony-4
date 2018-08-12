@@ -28,9 +28,15 @@ class ListOfUrls
      */
     private $listOfUrls;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Statistic", mappedBy="list")
+     */
+    private $statistics;
+
     public function __construct()
     {
         $this->listOfUrls = new ArrayCollection();
+        $this->statistics = new ArrayCollection();
     }
 
     public function getId()
@@ -75,6 +81,37 @@ class ListOfUrls
             // set the owning side to null (unless already changed)
             if ($listOfUrl->getListId() === $this) {
                 $listOfUrl->setListId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Statistic[]
+     */
+    public function getStatistics(): Collection
+    {
+        return $this->statistics;
+    }
+
+    public function addStatistic(Statistic $statistic): self
+    {
+        if (!$this->statistics->contains($statistic)) {
+            $this->statistics[] = $statistic;
+            $statistic->setList($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStatistic(Statistic $statistic): self
+    {
+        if ($this->statistics->contains($statistic)) {
+            $this->statistics->removeElement($statistic);
+            // set the owning side to null (unless already changed)
+            if ($statistic->getList() === $this) {
+                $statistic->setList(null);
             }
         }
 

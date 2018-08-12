@@ -5,8 +5,8 @@ namespace App\Controller;
 
 
 use App\Entity\ListOfUrls;
+use App\Entity\Statistic;
 use App\Entity\Url;
-use App\Repository\UrlRepository;
 use App\Service\UrlGeneratorService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -48,8 +48,9 @@ class UrlsListController extends AbstractController
 
             foreach ($urls as $link) {
                 $url = new Url();
+                $statistic = new Statistic();
                 $shortenedUrl = $urlGeneratorService->getRandomUrl();
-                    $url->addUrl($link, $shortenedUrl, $list, $userId);
+                $url->addUrl($link, $shortenedUrl, $list, $userId, $statistic);
                 $em->persist($url);
             }
             $em->flush();

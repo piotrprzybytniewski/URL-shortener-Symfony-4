@@ -237,6 +237,15 @@ main {
     width: 100%;
 }
 
+.url-statistics .copyToClipboard {
+    display: inline-block;
+}
+
+cite {
+    display: block;
+    font-size: 13px;
+}
+
 
 /* FOOTER */
 

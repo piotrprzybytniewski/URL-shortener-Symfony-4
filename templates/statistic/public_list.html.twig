@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="url-statistics">
+        {% if private %}
+            <h2>This address is not public, so you can't follow his statistics!</h2>
+        {% else %}
+            <h2>Statistics for list of URLs: </h2>
+            <a href="{{ app.request.uri }}">{{ app.request.uri }}</a>
+            <button type="button" class="copyToClipboard">Copy link</button>
+            <br>
+            {% for url in urls %}
+                <a href="{{ app.request.getSchemeAndHttpHost() }}/{{ url.shortenedUrl }}" target="_blank"
+                   title="{{ url.originalUrl }}">{{ app.request.getSchemeAndHttpHost() }}/{{ url.shortenedUrl }}</a>
+                <button type="button" class="copyToClipboard">Copy link</button>
+                <cite>{{ url.originalUrl }}</cite>
+                <h3>Clicks:</h3>
+                <p>00000</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -49,13 +49,14 @@ class Url
     private $ListId;
 
 
-    public function addUrl($link, $shortenedUrl, $listId, $userId)
+    public function addUrl($link, $shortenedUrl, $listId, $userId, $statistic)
     {
         $this
             ->setOriginalUrl($link)
             ->setShortenedUrl($shortenedUrl)
             ->setListId($listId)
-            ->setUserId($userId);
+            ->setUserId($userId)
+            ->setStatistic($statistic, $listId);
     }
 
     public function getId()
@@ -99,30 +100,19 @@ class Url
         return $this;
     }
 
-//    public function getListId(): ?int
-//    {
-//        return $this->ListId;
-//    }
-//
-//    public function setListId(?int $ListId): self
-//    {
-//        $this->ListId = $ListId;
-//
-//        return $this;
-//    }
-//
     public function getStatistic(): ?Statistic
     {
         return $this->statistic;
     }
 
-    public function setStatistic(Statistic $statistic): self
+    public function setStatistic(Statistic $statistic, $listId): self
     {
         $this->statistic = $statistic;
 
         // set the owning side of the relation if necessary
         if ($this !== $statistic->getUrlId()) {
             $statistic->setUrlId($this);
+            $statistic->setList($listId);
         }
 
         return $this;

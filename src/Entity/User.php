@@ -30,7 +30,7 @@ class User implements UserInterface, \Serializable
      */
     private $id;
 
-    /**
+   /**
      * @ORM\Column(type="string", length=25, unique=true)
      * @Assert\NotBlank()
      */
@@ -208,6 +208,16 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
 
 
 
