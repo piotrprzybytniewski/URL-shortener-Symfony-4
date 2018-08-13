@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Validator\Constraints as AcmeAssert;
@@ -47,6 +49,16 @@ class Url
      * @ORM\ManyToOne(targetEntity="App\Entity\ListOfUrls", inversedBy="listOfUrls")
      */
     private $ListId;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\LocalizationStatistic", mappedBy="url")
+     */
+    private $localizationStatistics;
+
+    public function __construct()
+    {
+        $this->localizationStatistics = new ArrayCollection();
+    }
 
 
     public function addUrl($link, $shortenedUrl, $listId, $userId, $statistic)
@@ -129,6 +141,38 @@ class Url
 
         return $this;
     }
+
+    /**
+     * @return Collection|LocalizationStatistic[]
+     */
+    public function getLocalizationStatistics(): Collection
+    {
+        return $this->localizationStatistics;
+    }
+
+    public function addLocalizationStatistic(LocalizationStatistic $localizationStatistic): self
+    {
+        if (!$this->localizationStatistics->contains($localizationStatistic)) {
+            $this->localizationStatistics[] = $localizationStatistic;
+            $localizationStatistic->setUrl($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocalizationStatistic(LocalizationStatistic $localizationStatistic): self
+    {
+        if ($this->localizationStatistics->contains($localizationStatistic)) {
+            $this->localizationStatistics->removeElement($localizationStatistic);
+            // set the owning side to null (unless already changed)
+            if ($localizationStatistic->getUrl() === $this) {
+                $localizationStatistic->setUrl(null);
+            }
+        }
+
+        return $this;
+    }
+
 
 
 }

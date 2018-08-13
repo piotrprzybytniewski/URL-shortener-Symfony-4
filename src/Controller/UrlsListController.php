@@ -26,6 +26,8 @@ class UrlsListController extends AbstractController
         EntityManagerInterface $em,
         UrlGeneratorService $urlGeneratorService
     ) {
+
+
         $formInput = trim($request->get('multiple_addresses'));
         $urls = preg_split("/[\s]+/", $formInput);
 

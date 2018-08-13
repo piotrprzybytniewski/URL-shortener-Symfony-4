@@ -11,6 +11,7 @@ class UrlStatisticsService
 {
 
     private $em;
+    private $logger;
 
     public function __construct(EntityManagerInterface $em, LoggerInterface $logger)
     {
