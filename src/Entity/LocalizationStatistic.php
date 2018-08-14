@@ -35,7 +35,7 @@ class LocalizationStatistic
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $clicks = 0;
+    private $clicks = 1;
 
 
     public function __construct()

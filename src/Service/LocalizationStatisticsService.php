@@ -57,31 +57,29 @@ class LocalizationStatisticsService
         return $today;
     }
 
-    public function isCountrySavedToday($country)
+    public function isCountrySavedToday($country, $urlId)
     {
         $today = $this->getCurrentDate();
 
         $localizationRepository = $this->localizationRepository;
-        $isSavedToday = $localizationRepository->findLocalizationForToday($today, $country);
+        $isSavedToday = $localizationRepository->findLocalizationForToday($today, $country, $urlId);
 
         return (bool)$isSavedToday;
     }
 
-    public function addClickToExistingCountry($country)
+    public function addClickToExistingCountry($country, $urlId)
     {
         $today = $this->getCurrentDate();
-
         $em = $this->em;
 
         $connection = $em->getConnection();
         try {
             $connection->executeUpdate('
-            UPDATE localization_statistic SET clicks = (clicks + 1) WHERE country = ? AND created_at = ?',
-                [$country, $today]);
+            UPDATE localization_statistic SET clicks = (clicks + 1) WHERE country = ? AND created_at = ? AND url_id = ?',
+                [$country, $today, $urlId]);
         } catch (DBALException $e) {
             $this->logger->error($e->getMessage());
         }
-
     }
 
 
@@ -93,10 +91,10 @@ class LocalizationStatisticsService
         $localization->setUrl($url);
         $localization->setCreatedAt(new \DateTime());
 
-         $url->addLocalizationStatistic($localization);
+        $url->addLocalizationStatistic($localization);
 
-         $em->persist($localization);
-         $em->persist($url);
-         $em->flush();
+        $em->persist($localization);
+        $em->persist($url);
+        $em->flush();
     }
 }

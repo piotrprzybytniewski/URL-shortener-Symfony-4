@@ -4,19 +4,23 @@
     <bookmark url="file://$PROJECT_DIR$/src/Controller/Statistics/StatisticsController.php" line="67" mnemonic="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="55257879-3b39-429e-9610-e3894d6ae77c" name="Default" comment="New entity - statistics for localization. Added this (country who is redirecting to original URL) to statistics for a single URL using new service.">
-      <change afterPath="$PROJECT_DIR$/src/Entity/LocalizationStatistic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/LocalizationStatisticRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/LocalizationStatisticsService.php" afterDir="false" />
+    <list default="true" id="55257879-3b39-429e-9610-e3894d6ae77c" name="Default" comment="Added controller and view for list of URLs. Also reorganized code (new service for UrlsList and more)">
+      <change afterPath="$PROJECT_DIR$/src/Controller/Redirect/MultipleUrlsRedirectController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/UrlsListService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/redirect/multiple_urls_redirect.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/custom.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Redirect/SingleUrlRedirectController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Redirect/SingleUrlRedirectController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UrlsListController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UrlsListController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Url.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Url.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/UrlStatisticsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/UrlStatisticsService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/LocalizationStatistic.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/LocalizationStatistic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/LocalizationStatisticRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LocalizationStatisticRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/LocalizationStatisticsService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/LocalizationStatisticsService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/multiple_addresses.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/multiple_addresses.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/statistic/public.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/statistic/public.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/statistic/public_list.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/statistic/public_list.html.twig" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,26 +57,27 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="955" />
+          <entry key="css" value="2939" />
           <entry key="dummy" value="9" />
           <entry key="env" value="83" />
           <entry key="gitignore" value="33" />
-          <entry key="js" value="375" />
-          <entry key="php" value="11542" />
-          <entry key="twig" value="1416" />
-          <entry key="txt" value="1434" />
+          <entry key="js" value="1793" />
+          <entry key="php" value="12228" />
+          <entry key="twig" value="3274" />
+          <entry key="txt" value="1612" />
           <entry key="yaml" value="228" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key=".env file" value="83" />
-          <entry key="CSS" value="955" />
-          <entry key="JavaScript" value="375" />
-          <entry key="PHP" value="11532" />
-          <entry key="PLAIN_TEXT" value="1476" />
+          <entry key="CSS" value="2940" />
+          <entry key="HTML" value="3" />
+          <entry key="JavaScript" value="1789" />
+          <entry key="PHP" value="12218" />
+          <entry key="PLAIN_TEXT" value="1654" />
           <entry key="SQL" value="10" />
-          <entry key="Twig" value="1416" />
+          <entry key="Twig" value="3274" />
           <entry key="YAML" value="228" />
         </counts>
       </usages-collector>
@@ -82,8 +87,8 @@
           <entry key="env" value="1" />
           <entry key="gitignore" value="2" />
           <entry key="js" value="1" />
-          <entry key="php" value="109" />
-          <entry key="twig" value="17" />
+          <entry key="php" value="124" />
+          <entry key="twig" value="23" />
           <entry key="yaml" value="2" />
         </counts>
       </usages-collector>
@@ -91,15 +96,15 @@
         <counts>
           <entry key="CSS" value="2" />
           <entry key="JavaScript" value="1" />
-          <entry key="PHP" value="109" />
+          <entry key="PHP" value="124" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Twig" value="17" />
+          <entry key="Twig" value="23" />
           <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.php.new.class">
         <counts>
-          <entry key="PHP Class.type" value="11" />
+          <entry key="PHP Class.type" value="13" />
         </counts>
       </usages-collector>
     </session>
@@ -119,83 +124,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="455">
-              <caret line="151" selection-start-line="151" selection-end-line="151" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/Redirect/SingleUrlRedirectController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-              <folding>
-                <element signature="e#45#78#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Controller/UrlsListController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/UrlStatisticsService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
-              <folding>
-                <element signature="e#32#64#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Service/LocalizationStatisticsService.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="95" column="15" selection-start-line="95" selection-start-column="15" selection-end-line="95" selection-end-column="15" />
-              <folding>
-                <element signature="e#33#70#0#PHP" expanded="true" />
-              </folding>
+            <state relative-caret-position="135">
+              <caret line="298" column="16" selection-start-line="298" selection-start-column="16" selection-end-line="298" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/src/Controller/Redirect/MultipleUrlsRedirectController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/LocalizationStatistic.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Entity/Url.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="152" column="20" selection-start-line="152" selection-start-column="20" selection-end-line="152" selection-end-column="44" />
+            <state relative-caret-position="82">
+              <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
               <folding>
-                <element signature="e#30#78#0#PHP" expanded="true" />
+                <element signature="e#45#85#0#PHP" expanded="true" />
+                <element signature="e#1362#1405#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/redirect/multiple_urls_redirect.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -203,8 +155,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/custom.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
+            <state relative-caret-position="82">
+              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -240,6 +192,10 @@
       <find>$id</find>
       <find>user</find>
       <find>localiz</find>
+      <find>header</find>
+      <find>getus</find>
+      <find>listofurls</find>
+      <find>open-al</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -248,8 +204,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Repository/MovieRepository.php" />
-        <option value="$PROJECT_DIR$/src/Controller/ApiController.php" />
         <option value="$PROJECT_DIR$/src/Controller/MovieController.php" />
         <option value="$PROJECT_DIR$/src/Service/UserManagerService.php" />
         <option value="$PROJECT_DIR$/src/Controller/AuthController.php" />
@@ -272,32 +226,35 @@
         <option value="$PROJECT_DIR$/src/Entity/Statistic.php" />
         <option value="$PROJECT_DIR$/src/Service/UrlGenerator.php" />
         <option value="$PROJECT_DIR$/src/Service/UrlGeneratorService.php" />
-        <option value="$PROJECT_DIR$/public/js/custom.js" />
-        <option value="$PROJECT_DIR$/templates/statistic/public.html.twig" />
         <option value="$PROJECT_DIR$/templates/redirect/single.html.twig" />
         <option value="$PROJECT_DIR$/src/Form/UrlsListType.php" />
         <option value="$PROJECT_DIR$/config/packages/routing.yaml" />
         <option value="$PROJECT_DIR$/config/routes.yaml" />
-        <option value="$PROJECT_DIR$/templates/index.html.twig" />
         <option value="$PROJECT_DIR$/src/Repository/UserRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/UrlRepository.php" />
-        <option value="$PROJECT_DIR$/templates/multiple_addresses.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/ListOfUrls.php" />
         <option value="$PROJECT_DIR$/src/Entity/User.php" />
-        <option value="$PROJECT_DIR$/public/css/style.css" />
-        <option value="$PROJECT_DIR$/templates/statistic/public_list.html.twig" />
         <option value="$PROJECT_DIR$/src/Service/StatisticsAccessService.php" />
         <option value="$PROJECT_DIR$/src/Controller/Statistics/StatisticsController.php" />
         <option value="$PROJECT_DIR$/src/Controller/DefaultController.php" />
         <option value="$PROJECT_DIR$/templates/base.html.twig" />
         <option value="$PROJECT_DIR$/src/Entity/Url.php" />
         <option value="$PROJECT_DIR$/src/Service/UrlStatisticsService.php" />
-        <option value="$PROJECT_DIR$/src/Repository/LocalizationStatisticRepository.php" />
-        <option value="$PROJECT_DIR$/src/Entity/LocalizationStatistic.php" />
-        <option value="$PROJECT_DIR$/src/Service/LocalizationStatisticsService.php" />
-        <option value="$PROJECT_DIR$/src/Controller/Redirect/SingleUrlRedirectController.php" />
-        <option value="$PROJECT_DIR$/src/Controller/UrlsListController.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/Service/UrlsListService.php" />
+        <option value="$PROJECT_DIR$/src/Controller/UrlsListController.php" />
+        <option value="$PROJECT_DIR$/src/Repository/LocalizationStatisticRepository.php" />
+        <option value="$PROJECT_DIR$/src/Service/LocalizationStatisticsService.php" />
+        <option value="$PROJECT_DIR$/src/Entity/LocalizationStatistic.php" />
+        <option value="$PROJECT_DIR$/templates/index.html.twig" />
+        <option value="$PROJECT_DIR$/templates/multiple_addresses.html.twig" />
+        <option value="$PROJECT_DIR$/templates/statistic/public_list.html.twig" />
+        <option value="$PROJECT_DIR$/templates/statistic/public.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/Redirect/SingleUrlRedirectController.php" />
+        <option value="$PROJECT_DIR$/templates/redirect/multiple_urls_redirect.html.twig" />
+        <option value="$PROJECT_DIR$/public/css/style.css" />
+        <option value="$PROJECT_DIR$/public/js/custom.js" />
+        <option value="$PROJECT_DIR$/src/Controller/Redirect/MultipleUrlsRedirectController.php" />
       </list>
     </option>
   </component>
@@ -308,8 +265,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="237" />
-    <option name="y" value="482" />
+    <option name="x" value="412" />
+    <option name="y" value="490" />
     <option name="width" value="1313" />
     <option name="height" value="541" />
   </component>
@@ -375,6 +332,13 @@
               <item name="url-shortener" type="b2602c69:ProjectViewProjectNode" />
               <item name="url-shortener" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+              <item name="Statistics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="url-shortener" type="b2602c69:ProjectViewProjectNode" />
+              <item name="url-shortener" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -399,6 +363,12 @@
               <item name="url-shortener" type="b2602c69:ProjectViewProjectNode" />
               <item name="url-shortener" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="url-shortener" type="b2602c69:ProjectViewProjectNode" />
+              <item name="url-shortener" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="redirect" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="url-shortener" type="b2602c69:ProjectViewProjectNode" />
@@ -460,7 +430,7 @@
       <workItem from="1533585279243" duration="48000" />
       <workItem from="1533585468072" duration="12885000" />
       <workItem from="1533651420491" duration="36145000" />
-      <workItem from="1533914545526" duration="52152000" />
+      <workItem from="1533914545526" duration="75041000" />
     </task>
     <task id="LOCAL-00001" summary="Basic template for single url statistics and validation to prevent access to private URLs.">
       <created>1533637896903</created>
@@ -518,11 +488,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534081645846</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="New entity - statistics for localization. Added this (country who is redirecting to original URL) to statistics for a single URL using new service.">
+      <created>1534167814625</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1534167814625</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150868000" />
+    <option name="totallyTimeSpent" value="173757000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -534,10 +511,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="237" y="482" width="1313" height="541" extended-state="0" />
+    <frame x="412" y="490" width="1313" height="541" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23623304" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24261771" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -553,7 +530,7 @@
       <window_info anchor="bottom" id="Terminal" order="10" weight="0.35894737" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32894737" />
       <window_info anchor="bottom" id="Command Line Tools Console" order="12" weight="0.32902032" />
-      <window_info anchor="bottom" id="Messages" order="13" visible="true" weight="0.32413793" />
+      <window_info active="true" anchor="bottom" id="Messages" order="13" visible="true" weight="0.32413793" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -576,10 +553,10 @@
     <MESSAGE value="Added basic statistics for list of URLs. Created new service for checking if user can access the statistics. Added few useful methods to entities (needed to regenerate them with correct relations)." />
     <MESSAGE value="Shortened DefaultController code using Url entity method. Added redirect to statistics after URLs list submit." />
     <MESSAGE value="New entity - statistics for localization. Added this (country who is redirecting to original URL) to statistics for a single URL using new service." />
-    <option name="LAST_COMMIT_MESSAGE" value="New entity - statistics for localization. Added this (country who is redirecting to original URL) to statistics for a single URL using new service." />
+    <MESSAGE value="Added controller and view for list of URLs. Also reorganized code (new service for UrlsList and more)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added controller and view for list of URLs. Also reorganized code (new service for UrlsList and more)" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Controller/MovieController.php" />
     <entry file="file://$PROJECT_DIR$/src/Controller/ApiController.php" />
     <entry file="file://$PROJECT_DIR$/src/Repository/MovieRepository.php" />
     <entry file="file://$PROJECT_DIR$/src/Controller/AuthController.php" />
@@ -687,56 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/custom.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="10" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/multiple_addresses.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/ListOfUrlsRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-511" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/statistic/public.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="12" lean-forward="true" selection-end-line="13" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/StatisticRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
@@ -747,51 +674,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/ListOfUrls.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding>
-            <element signature="e#30#78#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
           <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/DefaultController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="e#122#147#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/statistic/public_list.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="21" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="151" selection-start-line="151" selection-end-line="151" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/StatisticsAccessService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -805,27 +691,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Statistics/StatisticsController.php">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="839">
-          <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/UrlStatisticsService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
           <folding>
-            <element signature="e#47#87#0#PHP" expanded="true" />
+            <element signature="e#32#64#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/UrlRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/LocalizationStatisticRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -839,54 +718,183 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/LocalizationStatistic.php">
+    <entry file="file://$PROJECT_DIR$/src/Service/StatisticsAccessService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="42" />
+        <state relative-caret-position="680">
+          <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/Redirect/SingleUrlRedirectController.php">
+    <entry file="file://$PROJECT_DIR$/templates/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+        <state relative-caret-position="204">
+          <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/multiple_addresses.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
           <folding>
-            <element signature="e#45#78#0#PHP" expanded="true" />
+            <element signature="e#12#26#0#Twig" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/statistic/public_list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="24" lean-forward="true" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Controller/UrlsListController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="544">
+          <caret line="32" column="39" lean-forward="true" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
+          <folding>
+            <element signature="e#35#67#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Service/UrlStatisticsService.php">
+    <entry file="file://$PROJECT_DIR$/src/Service/UrlsListService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="28" column="47" selection-start-line="28" selection-start-column="47" selection-end-line="28" selection-end-column="47" />
+        <state relative-caret-position="187">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
           <folding>
-            <element signature="e#32#64#0#PHP" expanded="true" />
+            <element signature="e#33#59#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/LocalizationStatistic.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Service/LocalizationStatisticsService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="95" column="15" selection-start-line="95" selection-start-column="15" selection-end-line="95" selection-end-column="15" />
+        <state relative-caret-position="324">
+          <caret line="71" column="27" selection-start-line="71" selection-start-column="27" selection-end-line="71" selection-end-column="27" />
           <folding>
             <element signature="e#33#70#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/Controller/Statistics/StatisticsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        <state relative-caret-position="256">
+          <caret line="51" column="7" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+          <folding>
+            <element signature="e#47#87#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Redirect/SingleUrlRedirectController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#45#78#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/ListOfUrlsRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-16" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/LocalizationStatisticRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/StatisticRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/UrlRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="25" column="32" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/UserRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="40" selection-start-line="40" selection-end-line="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/ListOfUrls.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="61" column="33" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="33" />
+          <folding>
+            <element signature="e#30#78#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="534">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="e#122#147#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/statistic/public.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="14" lean-forward="true" selection-end-line="16" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/redirect/multiple_urls_redirect.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="15" column="39" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="298" column="16" selection-start-line="298" selection-start-column="16" selection-end-line="298" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/Redirect/MultipleUrlsRedirectController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="20" column="50" lean-forward="true" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+          <folding>
+            <element signature="e#45#85#0#PHP" expanded="true" />
+            <element signature="e#1362#1405#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

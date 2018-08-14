@@ -9,7 +9,6 @@ use App\Service\LocalizationStatisticsService;
 use App\Service\UrlStatisticsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Flex\Response;
 
 class SingleUrlRedirectController extends AbstractController
 {
@@ -26,21 +25,19 @@ class SingleUrlRedirectController extends AbstractController
             'shortenedUrl' => $shortenedUrl,
         ]);
 
-        $id = $url->getId();
+        $urlId = $url->getId();
         $originalUrl = $url->getOriginalUrl();
 
-        $urlStatisticsService->updateStatistics($id);
+        $urlStatisticsService->updateStatistics($urlId);
         $country = $localizationStatistics->getCountry();
-        $isCountrySavedToday = $localizationStatistics->isCountrySavedToday($country);
+        $isCountrySavedToday = $localizationStatistics->isCountrySavedToday($country, $urlId);
 
         if ($isCountrySavedToday) {
-            $localizationStatistics->addClickToExistingCountry($country);
+            $localizationStatistics->addClickToExistingCountry($country, $urlId);
         } else {
             $localizationStatistics->addNewCountry($url, $country);
 
         }
-
-        return new Response("AHA: ");
-//        return $this->redirect($originalUrl);
+        return $this->redirect($originalUrl);
     }
 }

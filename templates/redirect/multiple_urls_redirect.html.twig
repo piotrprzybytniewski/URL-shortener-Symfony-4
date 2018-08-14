@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="urls-list">
+        <form id="open-links">
+            <input id="open-all-links" type="submit" value="Open all links"/>
+        </form>
+        {% for url in urls %}
+            <div class="url-list-item">
+                {% if loop.first %}
+                    <div class="wrap-diamond left-item">
+                    <div class="diamond">
+                        <p class="user-info">On click below, you will open the page in a new window</p>
+                    </div>
+                    </div>
+                    <div class="wrap-diamond right-item">
+                    <div class="diamond">
+                        <p class="user-info">On click below, you will copy shortened URL for this link</p>
+                    </div>
+                    </div>
+                {% endif %}
+                <div class="url-button">
+                    <a href="{{ app.request.getSchemeAndHttpHost() }}/{{ url.shortenedUrl }}" target="_blank"
+                       title="Open in a new window" class="big-url-link url-to-redirect">{{ url.originalUrl }}</a>
+                    <button type="button" class="copyToClipboard">Shortened link</button>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

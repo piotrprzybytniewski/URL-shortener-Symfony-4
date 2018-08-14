@@ -15,8 +15,13 @@ body {
 
 a {
     color: #ed0000;
+    font-size: 17px;
     text-decoration: none;
     font-weight: bold;
+}
+
+a:hover {
+    color: #08415C;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,7 +42,6 @@ ul {
     list-style-type: none;
     float: right;
 }
-
 
 ul li {
     float: left;
@@ -93,7 +97,6 @@ input[type=submit]:hover, button:hover {
     color: #FFB400;
 }
 
-
 .form {
     width: 400px;
     text-align: center;
@@ -106,7 +109,6 @@ input[type=submit]:hover, button:hover {
     font-weight: bold;
     padding: 4px;
 }
-
 
 /* MAIN */
 
@@ -130,8 +132,6 @@ main {
     width: auto;
 }
 
-
-
 /* TOOLTIP */
 
 [data-tooltip] {
@@ -145,7 +145,7 @@ main {
 [data-tooltip]:after {
     visibility: hidden;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
     opacity: 0;
     pointer-events: none;
 }
@@ -194,22 +194,30 @@ main {
     /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";*/
     /*filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);*/
     opacity: 1;
-    transition-delay:0.3s;
+    transition-delay: 0.3s;
 }
-
 
 /* MULTIPLE ADDRESSES */
 
 .sub-header {
     margin: 3px;
-    color: firebrick;
+    color: red;
     font-weight: bold;
 }
 
-.multiple-addresses  {
+.multiple-addresses {
     width: 70%;
-    margin:0 auto;
+    margin: 0 auto;
     text-align: center;
+}
+
+.multiple-addresses h2 {
+    line-height: 1;
+}
+
+.multiple-addresses h2 span {
+    font-size: 14px;
+    padding: 0;
 }
 
 .multiple-addresses textarea {
@@ -246,6 +254,141 @@ cite {
     font-size: 13px;
 }
 
+.notice {
+    color: #00A6ED;
+    margin: 0;
+    font-size: 17px;
+}
+
+/* LIST OF URLS */
+
+.urls-list {
+    text-align: center;
+}
+
+.original-url {
+    font-size: 13px;
+    color: #00A6ED;
+}
+
+.original-url {
+    display: block;
+}
+
+.url-list-item {
+    margin-top: 5px;
+}
+
+.original-url-button {
+    background: #0D2C54;
+    color: white;
+    padding: 8px 15px;
+    margin-right: 5px;
+    border: none;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 18px;
+}
+
+.original-url-button:hover {
+    color: yellow;
+}
+
+#open-all-links {
+    width: auto;
+}
+
+.url-button {
+    display: grid;
+    grid-template-columns: minmax(500px, 60%) auto;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.big-url-link {
+    grid-column: 1;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background: #0D2C54;
+    color: white;
+    padding: 17px 10px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.url-button .copyToClipboard {
+    grid-column: 2;
+}
+
+.big-url-link:hover {
+    color: yellow;
+
+}
+
+@-webkit-keyframes blink {
+    from {
+        background: #0D2C54;
+    }
+    to {
+        background: darkred;
+        color: white;
+    }
+}
+
+.blink {
+    -webkit-animation-name: blink;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: cubic-bezier(1.0, 0, 0, 1.0);
+    -webkit-animation-duration: 1.5s;
+}
+
+.blink-message {
+    background: #0D2C54;
+    border-radius: 4px;
+    color: yellow;
+    padding: 11px;
+    max-width: 40%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.user-info {
+    color: black;
+    font-weight: bold;
+    border-radius: 4px;
+    font-size: 12px;
+    margin: 0 auto;
+    transform: rotate(-45deg) translate(-12px, 17px);
+}
+
+.diamond {
+    margin: 0 auto;
+    height: 100px;
+    width: 100px;
+    background: #FFC914;
+    border: 1px solid black;
+    transform: rotate(45deg);
+}
+
+.wrap-diamond {
+    margin: 25px;
+    display: inline-block;
+}
+
+.left-item {
+    width: 57%;
+}
+.right-item {
+    width: 30%;
+}
+
+.right-item .diamond {
+    background: #ff00009c;
+}
 
 /* FOOTER */
 

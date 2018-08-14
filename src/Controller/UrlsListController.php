@@ -3,12 +3,7 @@
 
 namespace App\Controller;
 
-
-use App\Entity\ListOfUrls;
-use App\Entity\Statistic;
-use App\Entity\Url;
-use App\Service\UrlGeneratorService;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\UrlsListService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -23,11 +18,8 @@ class UrlsListController extends AbstractController
      */
     public function showListOfUrls(
         Request $request,
-        EntityManagerInterface $em,
-        UrlGeneratorService $urlGeneratorService
+        UrlsListService $urlsList
     ) {
-
-
         $formInput = trim($request->get('multiple_addresses'));
         $urls = preg_split("/[\s]+/", $formInput);
 
@@ -41,23 +33,11 @@ class UrlsListController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $urls = $form->get('urls')->getData();
-            $list = new ListOfUrls();
-            $listUrl = $urlGeneratorService->getRandomUrl();
-            $list->setListUrl($listUrl);
-            $em->persist($list);
-
             $userId = $this->getUser();
 
-            foreach ($urls as $link) {
-                $url = new Url();
-                $statistic = new Statistic();
-                $shortenedUrl = $urlGeneratorService->getRandomUrl();
-                $url->addUrl($link, $shortenedUrl, $list, $userId, $statistic);
-                $em->persist($url);
-            }
-            $em->flush();
+            $listUrl = $urlsList->addListOfUrls($urls, $userId);
 
-            return $this->redirectToRoute('public_list_of_urls_statistics', array('url' => $listUrl));
+            return $this->redirectToRoute('public_list_of_urls_statistics', ['url' => $listUrl]);
         }
         return $this->render('multiple_addresses.html.twig', [
             'form' => $form->createView(),

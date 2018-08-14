@@ -19,14 +19,16 @@ class LocalizationStatisticRepository extends ServiceEntityRepository
         parent::__construct($registry, LocalizationStatistic::class);
     }
 
-    public function findLocalizationForToday($date, $country)
+    public function findLocalizationForToday($date, $country, $urlId)
     {
         $q = $this
             ->createQueryBuilder('s')
             ->where('s.createdAt = :date')
             ->andWhere('s.country = :country')
+            ->andWhere('s.url = :urlId')
             ->setParameter('date', $date)
             ->setParameter('country', $country)
+            ->setParameter('urlId', $urlId)
             ->getQuery();
 
         return $q->getResult();

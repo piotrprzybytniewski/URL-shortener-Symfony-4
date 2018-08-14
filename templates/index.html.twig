@@ -1,19 +1,19 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="form url-form">
-        <h4>Short single URL</h4>
+        <h2>Shorten one URL</h2>
     {{ form_start(form) }}
         {{ form_errors(form) }}
     {{ form_row(form.originalUrl) }}
-    <button type="submit">Shorten!</button>
+    <button type="submit">Shorten it!</button>
     {{ form_end(form) }}
     </div>
     <div class="multiple-addresses">
-        <h2>Short list of URLs into one short URL to share with other!</h2>
-        <p class="sub-header">Enter one link per line!</p>
+        <h2>or create a list of URLs<br><span>and share the list with your friends!</span></h2>
+        <p class="sub-header">Enter <u>one link per line</u>!</p>
         <form action="{{ path('list_of_urls') }}" method="POST">
             <textarea name="multiple_addresses"></textarea>
-            <button type="submit">Submit</button>
+            <button type="submit">Shorten this list!</button>
         </form>
     </div>
 {% endblock %}

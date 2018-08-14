@@ -5,7 +5,6 @@
 /var/
 /vendor/
 .idea/
-/.idea
 ###< symfony/framework-bundle ###
 
 ###> symfony/web-server-bundle ###
