@@ -83,13 +83,14 @@ class LocalizationStatisticsService
     }
 
 
-    public function addNewCountry($url, $country)
+    public function addNewCountry($url, $country, $listId)
     {
         $em = $this->em;
         $localization = new LocalizationStatistic();
         $localization->setCountry($country);
         $localization->setUrl($url);
         $localization->setCreatedAt(new \DateTime());
+        $localization->setListOfUrls($listId);
 
         $url->addLocalizationStatistic($localization);
 

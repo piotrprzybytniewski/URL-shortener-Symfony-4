@@ -1,11 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
     <div class="form url-form">
         <h2>Shorten one URL</h2>
     {{ form_start(form) }}
         {{ form_errors(form) }}
     {{ form_row(form.originalUrl) }}
-    <button type="submit">Shorten it!</button>
+    <button type="submit">SHORTEN</button>
     {{ form_end(form) }}
     </div>
     <div class="multiple-addresses">
@@ -13,7 +18,7 @@
         <p class="sub-header">Enter <u>one link per line</u>!</p>
         <form action="{{ path('list_of_urls') }}" method="POST">
             <textarea name="multiple_addresses"></textarea>
-            <button type="submit">Shorten this list!</button>
+            <button type="submit">SHORTEN LIST</button>
         </form>
     </div>
 {% endblock %}

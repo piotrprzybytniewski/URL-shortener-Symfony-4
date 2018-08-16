@@ -28,7 +28,6 @@ class RegistrationController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
 
@@ -36,9 +35,7 @@ class RegistrationController extends Controller
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // maybe set a "flash" success message for the user
-
-            return $this->redirectToRoute('dashboard');
+            return $this->redirectToRoute('homepage');
         }
 
         return $this->render(
@@ -47,12 +44,4 @@ class RegistrationController extends Controller
         );
     }
 
-
-    /**
-      * @Route("dashboard", name="dashboard")
-     */
-    public function profile()
-    {
-        return new Response("Welcome in your profile");
-    }
 }

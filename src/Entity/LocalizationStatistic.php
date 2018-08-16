@@ -37,6 +37,11 @@ class LocalizationStatistic
      */
     private $clicks = 1;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\ListOfUrls", inversedBy="localizationStatistics")
+     */
+    private $listOfUrls;
+
 
     public function __construct()
     {
@@ -92,6 +97,18 @@ class LocalizationStatistic
     public function setClicks(?int $clicks): self
     {
         $this->clicks = $clicks;
+
+        return $this;
+    }
+
+    public function getListOfUrls(): ?ListOfUrls
+    {
+        return $this->listOfUrls;
+    }
+
+    public function setListOfUrls(?ListOfUrls $listOfUrls): self
+    {
+        $this->listOfUrls = $listOfUrls;
 
         return $this;
     }

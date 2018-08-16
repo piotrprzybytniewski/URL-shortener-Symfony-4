@@ -27,6 +27,7 @@ class SingleUrlRedirectController extends AbstractController
 
         $urlId = $url->getId();
         $originalUrl = $url->getOriginalUrl();
+        $listId = $url->getListId();
 
         $urlStatisticsService->updateStatistics($urlId);
         $country = $localizationStatistics->getCountry();
@@ -35,7 +36,7 @@ class SingleUrlRedirectController extends AbstractController
         if ($isCountrySavedToday) {
             $localizationStatistics->addClickToExistingCountry($country, $urlId);
         } else {
-            $localizationStatistics->addNewCountry($url, $country);
+            $localizationStatistics->addNewCountry($url, $country, $listId);
 
         }
         return $this->redirect($originalUrl);

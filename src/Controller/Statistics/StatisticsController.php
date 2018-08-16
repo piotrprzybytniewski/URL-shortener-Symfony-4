@@ -5,9 +5,9 @@ namespace App\Controller\Statistics;
 
 
 use App\Repository\ListOfUrlsRepository;
-use App\Repository\StatisticRepository;
 use App\Repository\UrlRepository;
 use App\Service\StatisticsAccessService;
+use App\Service\UrlStatisticsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -18,9 +18,9 @@ class StatisticsController extends AbstractController
      */
     public function publicStatistics(
         $url,
-        StatisticRepository $statisticRepository,
         UrlRepository $urlRepository,
-        StatisticsAccessService $statisticsAccess
+        StatisticsAccessService $statisticsAccess,
+        UrlStatisticsService $urlStatisticsService
     ) {
         $private = false;
 
@@ -28,13 +28,10 @@ class StatisticsController extends AbstractController
             'shortenedUrl' => $url,
         ]);
 
-        if ($statisticsAccess->userIsAuthorOfSingleUrl($link)) {
-            $id = $link->getId();
+        if ($statisticsAccess->userIsAuthorOfSingleUrl($link) || $link->getUserId() === NULL) {
 
-            $statistics = $statisticRepository->findOneBy([
-                'urlId' => $id,
-            ]);
-            $clicks = $statistics->getClicks();
+            $clicks = $urlStatisticsService->getClicksForUrl($link);
+            $localizationStatistics = $urlStatisticsService->getLocalizationStatisticsForUrl($link);
         } else {
             $private = true;
             return $this->render('statistic/public.html.twig', [
@@ -45,6 +42,7 @@ class StatisticsController extends AbstractController
         return $this->render('statistic/public.html.twig', [
             'url' => $url,
             'clicks' => $clicks,
+            'localizationStatistics' => $localizationStatistics,
             'private' => $private,
         ]);
     }
@@ -67,15 +65,16 @@ class StatisticsController extends AbstractController
 
         if ($statisticsAccess->userIsAuthorOfList($list)) {
 
+//            return new Response(dump($urls));
             return $this->render('statistic/public_list.html.twig', [
                 'urls' => $urls,
+                'listUrl' => $url,
                 'private' => $private,
             ]);
         }
 
         $private = true;
         return $this->render('statistic/public_list.html.twig', [
-            'urls' => $urls,
             'private' => $private,
         ]);
 

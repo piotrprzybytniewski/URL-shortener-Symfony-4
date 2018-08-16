@@ -33,10 +33,16 @@ class ListOfUrls
      */
     private $statistics;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\LocalizationStatistic", mappedBy="listOfUrls")
+     */
+    private $localizationStatistics;
+
     public function __construct()
     {
         $this->listOfUrls = new ArrayCollection();
         $this->statistics = new ArrayCollection();
+        $this->localizationStatistics = new ArrayCollection();
     }
 
     public function getId()
@@ -112,6 +118,37 @@ class ListOfUrls
             // set the owning side to null (unless already changed)
             if ($statistic->getList() === $this) {
                 $statistic->setList(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|LocalizationStatistic[]
+     */
+    public function getLocalizationStatistics(): Collection
+    {
+        return $this->localizationStatistics;
+    }
+
+    public function addLocalizationStatistic(LocalizationStatistic $localizationStatistic): self
+    {
+        if (!$this->localizationStatistics->contains($localizationStatistic)) {
+            $this->localizationStatistics[] = $localizationStatistic;
+            $localizationStatistic->setListOfUrls($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLocalizationStatistic(LocalizationStatistic $localizationStatistic): self
+    {
+        if ($this->localizationStatistics->contains($localizationStatistic)) {
+            $this->localizationStatistics->removeElement($localizationStatistic);
+            // set the owning side to null (unless already changed)
+            if ($localizationStatistic->getListOfUrls() === $this) {
+                $localizationStatistic->setListOfUrls(null);
             }
         }
 

@@ -52,6 +52,7 @@ class Url
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\LocalizationStatistic", mappedBy="url")
+     * @ORM\OrderBy({"clicks" = "DESC"})
      */
     private $localizationStatistics;
 

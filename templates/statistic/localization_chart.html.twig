@@ -1,0 +1,25 @@
+<figure>
+    <figcaption>LOCATIONS</figcaption>
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         class="chart" width="60%" height="100%" aria-labelledby="title" role="img">
+        <title id="title">Clicks from given location</title>
+        {% set count = 0 %}
+        {% for localizationStatistic in localizationStatistics %}
+            {% set count = count + localizationStatistic.clicks %}
+        {% endfor %}
+
+        {% set rectWidth = 0 %}
+        {% set rectY = 40 %}
+        {% set textY = 58 %}
+        {% for localizationStatistic in localizationStatistics %}
+            {% set t = localizationStatistic.clicks %}
+            <g class="bar">
+                <rect width="{{ t / count * 100 }}%" height="35" y="{{ rectY }}"></rect>
+                <text x="{{ t / count * 100 + 1 }}%" y="{{ textY }}"
+                      dy=".35em">{{ localizationStatistic.clicks }} clicks | {{ localizationStatistic.country }} | {{ localizationStatistic.createdAt|date('d-m-Y') }}</text>
+            </g>
+            {% set rectY = rectY + 40 %}
+            {% set textY = textY + 40 %}
+        {% endfor %}
+    </svg>
+</figure>

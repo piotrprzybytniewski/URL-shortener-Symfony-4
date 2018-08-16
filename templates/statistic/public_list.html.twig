@@ -1,24 +1,58 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="url-statistics">
+    <div id="statistics" class="url-statistics">
         {% if private %}
             <h2>This address is not public, so you can't follow his statistics!</h2>
         {% else %}
-            <p class="notice">Copy link to your list and share it to your friends!</p>
+            <div class="top-statistics">
             <p class="notice">Add current link to your bookmarks, because there you will be able to track statistics for your list!</p>
-            <h2>Your list of URLs:  </h2>
-            <a href="{{ app.request.uri }}">{{ app.request.uri }}</a>
-            <button type="button" class="copyToClipboard">Copy link of the list</button>
-            <br>
-            <h2>Statistics</h2>
+            <h2>LIST URL</h2>
+            <a href="{{ app.request.getSchemeAndHttpHost() }}/l/{{ listUrl }}">{{ app.request.getSchemeAndHttpHost() }}/l/{{ listUrl }}</a>
+            <button type="button" class="copyToClipboard">Copy</button>
+            </div>
+            <div class="left-statistics">
+                {% for url in urls %}
+                    <a class="left-statistics-item" href="#{{ url.shortenedUrl }}">{{ app.request.getSchemeAndHttpHost() }}/{{ url.shortenedUrl }}
+                        <cite>{{ url.originalUrl }}</cite></a>
+                {% endfor %}
+            </div>
+            <div class="right-statistics">
+                <h2>STATISTICS</h2>
             {% for url in urls %}
+                <div id="{{ url.shortenedUrl }}" class="url-informations">
                 <a href="{{ app.request.getSchemeAndHttpHost() }}/{{ url.shortenedUrl }}" target="_blank"
                    title="{{ url.originalUrl }}">{{ app.request.getSchemeAndHttpHost() }}/{{ url.shortenedUrl }}</a>
                 <button type="button" class="copyToClipboard">Copy link</button>
-                <cite>{{ url.originalUrl }}</cite>
-                <h3>Clicks:</h3>
-                <p>00000</p>
+                    <cite>{{ url.originalUrl }}</cite>
+                    {% set count = 0 %}
+                    {% for localizationStatistic in url.localizationStatistics %}
+                        {% set count = count + localizationStatistic.clicks %}
+                    {% endfor %}
+                    <h3>CLICKS</h3>
+                <p>{{ url.statistic.clicks }}</p>
+                    <figure>
+                        <figcaption>LOCATIONS</figcaption>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             class="chart" width="60%" height="100%" aria-labelledby="title" role="img">
+                            <title id="title">Clicks from given location</title>
+                            {% set rectWidth = 0 %}
+                            {% set rectY = 40 %}
+                            {% set textY = 58 %}
+                            {% for localizationStatistic in url.localizationStatistics %}
+                                {% set t = localizationStatistic.clicks %}
+                                <g class="bar">
+                                    <rect width="{{ t / count * 100 }}%" height="35" y="{{ rectY }}"></rect>
+                                    <text x="{{ t / count * 100 + 1 }}%" y="{{ textY }}"
+                                          dy=".35em">{{ localizationStatistic.clicks }} clicks | {{ localizationStatistic.country }} | {{ localizationStatistic.createdAt|date('d-m-Y') }}</text>
+                                </g>
+                                {% set rectY = rectY + 40 %}
+                                {% set textY = textY + 40 %}
+                            {% endfor %}
+                        </svg>
+                    </figure>
+                </div>
             {% endfor %}
+            </div>
         {% endif %}
     </div>
 {% endblock %}

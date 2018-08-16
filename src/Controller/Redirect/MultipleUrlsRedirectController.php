@@ -5,16 +5,13 @@ namespace App\Controller\Redirect;
 
 
 use App\Repository\ListOfUrlsRepository;
-use App\Repository\UrlRepository;
-use App\Service\LocalizationStatisticsService;
-use App\Service\UrlStatisticsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MultipleUrlsRedirectController extends AbstractController
 {
     /**
-     * @Route("/list/{shortenedUrl}", methods={"GET"}, name="multiple_urls_redirect")
+     * @Route("/l/{shortenedUrl}", methods={"GET"}, name="multiple_urls_redirect")
      */
     public function multipleUrlsRedirect(
         $shortenedUrl,
@@ -23,6 +20,7 @@ class MultipleUrlsRedirectController extends AbstractController
         $list = $listOfUrlsRepository->findOneBy([
             'listUrl' => $shortenedUrl,
         ]);
+
 
         $urls = $list->getListOfUrls();
 

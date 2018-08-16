@@ -23,6 +23,15 @@ class UrlsListController extends AbstractController
         $formInput = trim($request->get('multiple_addresses'));
         $urls = preg_split("/[\s]+/", $formInput);
 
+        $count = count($urls);
+
+        if ($count > 15) {
+            $this->addFlash(
+                'notice',
+                'In the free version you can shorten max 15 URLs. For more, check our premium offer!');
+            return $this->redirectToRoute('homepage');
+        }
+
         $form = $this->createFormBuilder(['urls' => $urls])
             ->add('urls', CollectionType::class, [
                 'entry_type' => TextType::class,

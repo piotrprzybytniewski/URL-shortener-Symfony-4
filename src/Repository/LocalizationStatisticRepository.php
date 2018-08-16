@@ -33,4 +33,18 @@ class LocalizationStatisticRepository extends ServiceEntityRepository
 
         return $q->getResult();
     }
+
+    public function findLocalizationWithOrderByClicks($urlId)
+    {
+        $q = $this
+            ->createQueryBuilder('s')
+            ->where('s.url = :urlId')
+            ->setParameter('urlId', $urlId)
+            ->orderBy('s.clicks', 'DESC')
+            ->getQuery();
+
+        return $q->getResult();
+    }
+
 }
+

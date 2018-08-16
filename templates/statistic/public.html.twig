@@ -1,17 +1,19 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="url-statistics">
-        {% if private  %}
-        <h2>This address is not public, so you can't follow his statistics!</h2>
+        {% if private %}
+            <h2>This address is not public, so you can't follow his statistics!</h2>
         {% else %}
-            <p class="notice">Add current link to bookmarks. Here you will be able to track statistics of the URL.</p>
-            <br>
-            <p class="sub-header">Copy link and share it with your friends!</p>
-        <h2>Statistics for URL: </h2>
-        <a href="{{ app.request.getSchemeAndHttpHost() }}/{{ url }}">{{ app.request.getSchemeAndHttpHost() }}/{{ url }}</a>
-        <button type="button" class="copyToClipboard">Copy link</button>
-        <h3>Clicks:</h3>
-        <p>{{ clicks }}</p>
+            <p class="notice">Add current link to bookmarks. Here you will be able to track <b>statistics</b> of the
+                URL.</p>
+
+            <h2>Statistics for URL: </h2>
+            <a href="{{ app.request.getSchemeAndHttpHost() }}/{{ url }}">{{ app.request.getSchemeAndHttpHost() }}
+                /{{ url }}</a>
+            <button type="button" class="copyToClipboard">Copy link</button>
+            <h3>Total clicks:</h3>
+            <p>{{ clicks }}</p>
+            {% include 'statistic/localization_chart.html.twig' %}
         {% endif %}
     </div>
 {% endblock %}
