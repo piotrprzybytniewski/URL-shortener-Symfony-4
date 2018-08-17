@@ -7,11 +7,10 @@
             <p class="notice">Add current link to bookmarks. Here you will be able to track <b>statistics</b> of the
                 URL.</p>
 
-            <h2>Statistics for URL: </h2>
-            <a href="{{ app.request.getSchemeAndHttpHost() }}/{{ url }}">{{ app.request.getSchemeAndHttpHost() }}
-                /{{ url }}</a>
+            <h2>Statistics for URL </h2>
+            <a href="{{ app.request.getSchemeAndHttpHost()}}/{{ url }}">{{ app.request.getSchemeAndHttpHost() }}/{{ url }}</a>
             <button type="button" class="copyToClipboard">Copy link</button>
-            <h3>Total clicks:</h3>
+            <h3>TOTAL CLICKS</h3>
             <p>{{ clicks }}</p>
             {% include 'statistic/localization_chart.html.twig' %}
         {% endif %}

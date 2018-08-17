@@ -1,5 +1,5 @@
 html, body {
-    width: 100vw;
+    max-width: 100vw;
     min-height: 100vh;
     margin: 0;
     padding: 0;
@@ -12,6 +12,7 @@ body {
     display: grid;
     grid-template-rows: 50px auto 50px;
     color: #000;
+    margin: 0;
 }
 
 a {
@@ -260,9 +261,10 @@ cite {
 
 .notice {
     color: black;
+    text-align: center;
     background: #ffcc00;
-    padding: 10px;
     margin: 0;
+    padding: 10px 0;
     font-size: 17px;
 }
 
