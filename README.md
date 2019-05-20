@@ -1,9 +1,19 @@
-# URL-shortener-Symfony-4
-Working URL (also list of URLs) shortener written in Symfony 4.
+# URL shortener
+This project is built with Symfony 4. It allows to shorten long URLs to short and good looking one. It works with single URLs, but also with lists of URLs pasted at once.
 
-Users can shorten single URLs or list of URLs. When you are logged in to your account, you will create private URLs, which will be only available for you.
+## Features
 
-Single URLs and lists of URLs have statistics: number of URL clicks and user location with individual clicks for every location for given day.
+* shortening one or more addresses at once,
+* logged users can create private URLs, available only for them,
+* statistics for amount of URL clicks and location of users who visited shortened URLs,
+ 
+## Built With
 
-CLICK IMAGE BELOW TO WATCH PROJECT PREVIEW ON YOUTUBE!
-[![YOUTUBE PROJECT PREVIEW VIDEO!](https://user-images.githubusercontent.com/20010675/44273753-94a13680-a240-11e8-9866-d8b16d2e44c4.png)](https://www.youtube.com/watch?v=l7ev7eoe2hg)
+* Symfony 4,
+* Doctrine ORM,
+* MySQL,
+* jQuery,
+* Twig.
+
+[![YOUTUBE PROJECT PREVIEW VIDEO!](https://user-images.githubusercontent.com/20010675/58028491-2107bf00-7b1b-11e9-8b78-8d06a7030ccc.png)
+### CLICK IMAGE TO WATCH PROJECT PREVIEW ON YOUTUBE!
